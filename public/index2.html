@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<title>W3.CSS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link type="text/css" rel="stylesheet" href="assets/css/styles.css" />
+<link rel="stylesheet" href="assets/revealjs/css/reveal.css">
+<body>
+
+  <h2 class="w3-center">Slide Show</h2>
+  <!-- <form class="login">
+    <span>What's your secret key?</span>
+    <input type="text" placeholder="Please enter your secret key!"/>
+    <input type="submit" value="➡" />
+  </form> -->
+  <div class="w3-content w3-display-container">
+
+    <img class="mySlides" src="assets/img/gambar1.jpg" style="width:100%">
+    <img class="mySlides" src="assets/img/gambar2.jpg" style="width:100%">
+    <img class="mySlides" src="assets/img/gambar3.jpg" style="width:100%">
+    <img class="mySlides" src="assets/img/gambar4.jpg" style="width:100%">
+    <img class="mySlides" src="assets/img/4.jpg" style="width:100%">
+    <img class="mySlides" src="assets/img/5.jpg" style="width:100%">
+
+
+    <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+    <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+  </div>
+<script src="https://www.gstatic.com/firebasejs/3.7.6/firebase.js"></script>
+<script>
+
+
+  var config = {
+      apiKey: "AIzaSyDSkBIEZuyNQi8HYlqcG7Z1jS5m2lvqHX4",
+      authDomain: "mychatting-6fa19.firebaseapp.com",
+      databaseURL: "https://mychatting-6fa19.firebaseio.com",
+      projectId: "mychatting-6fa19",
+      storageBucket: "mychatting-6fa19.appspot.com",
+      messagingSenderId: "355712741917"
+    };
+  firebase.initializeApp(config);
+
+  var database = firebase.database();
+
+  var starCountRef = firebase.database().ref('gerak/');
+  starCountRef.on('value', function(snapshot) {
+    if (snapshot.val().arah == "kanan" ) {
+      plusDivs(1)
+    } else {
+      plusDivs(-1)
+    }
+  });
+
+
+
+  var slideIndex = 1;
+  showDivs(slideIndex);
+
+  function plusDivs(n) {
+    showDivs(slideIndex += n);
+  }
+
+  function showDivs(n) {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    if (n > x.length) {slideIndex = 1}
+    if (n < 1) {slideIndex = x.length}
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";
+    }
+    x[slideIndex-1].style.display = "block";
+  }
+</script>
+
+</body>
+</html>
